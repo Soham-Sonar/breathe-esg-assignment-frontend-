@@ -1,5 +1,8 @@
 // components/Sidebar.jsx
 
+import { API_BASE } from "../api";
+import { useState } from "react";
+
 const NAV_ITEMS = [
 
   { id: "dashboard", icon: "📊", label: "Dashboard" },
@@ -33,6 +36,11 @@ export default function Sidebar({
   onCompanyChange,
 
 }) {
+    const [showAddCompany, setShowAddCompany] =
+    useState(false);
+
+  const [newCompany, setNewCompany] =
+    useState("");
 
   return (
 
@@ -59,71 +67,134 @@ export default function Sidebar({
 
 
 
-      {/* Company Selector */}
+{/* Company Selector */}
 
-      <div className="company-selector">
+{/* Company Selector */}
 
-        <div className="company-label">
+<div className="company-selector">
 
-          Company
+  <div className="company-label">
+    Company
+  </div>
 
-        </div>
+  <select
+    className="company-dropdown"
+    value={companyId}
+    onChange={(e)=>{
 
-        <select
+      const value = e.target.value;
 
-          className="company-dropdown"
+      if(value==="add-company"){
+        setShowAddCompany(true);
+        return;
+      }
 
-          value={companyId}
+      setShowAddCompany(false);
 
-          onChange={(e)=>{
+      if(onCompanyChange){
+        onCompanyChange(value);
+      }
 
-            if(onCompanyChange){
+    }}
+  >
 
-              onCompanyChange(
+    {companies.map((company)=>(
 
-                e.target.value
+      <option
+        key={company.id}
+        value={company.id}
+      >
+        {company.name}
+      </option>
 
-              )
+    ))}
 
+    <option value="add-company">
+      ➕ Add Company
+    </option>
+
+  </select>
+
+
+  {showAddCompany && (
+
+    <div className="add-company-container">
+
+      <input
+        className="company-input"
+        placeholder="New company"
+        value={newCompany}
+        onChange={(e)=>
+          setNewCompany(
+            e.target.value
+          )
+        }
+      />
+
+      <button
+
+        className="add-company-btn"
+
+        onClick={async()=>{
+
+          const name =
+            newCompany.trim();
+
+          if(!name) return;
+
+          try{
+
+            const res =
+              await fetch(
+                `${API_BASE}/companies/`,
+                {
+                  method:"POST",
+
+                  headers:{
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:JSON.stringify({
+                    name
+                  })
+                }
+              );
+
+            if(!res.ok){
+              throw new Error();
             }
 
-          }}
+            setNewCompany("");
+            setShowAddCompany(false);
 
-        >
+            window.location.reload();
 
-          {companies.length===0 ? (
+          }
 
-            <option value="">
+          catch{
 
-              Loading...
+            alert(
+              "Failed to create company"
+            );
 
-            </option>
+          }
 
-          ) : (
+        }}
 
-            companies.map((company)=>(
+      >
 
-              <option
+        Add
 
-                key={company.id}
+      </button>
 
-                value={company.id}
+    </div>
 
-              >
+  )}
 
-                {company.name}
+</div>
 
-              </option>
-
-            ))
-
-          )}
-
-        </select>
-
-      </div>
-
-
+  
 
       {/* Navigation */}
 

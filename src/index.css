@@ -600,54 +600,120 @@ tr:hover td {
   .format-grid { grid-template-columns: 1fr; }
 }
 
-
 .company-selector{
 
-margin:18px;
+  margin:18px;
 
-padding:12px;
+  padding:12px;
 
-background:rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 
-border-radius:10px;
+  border-radius:10px;
 
-display:flex;
+  display:flex;
 
-flex-direction:column;
+  flex-direction:column;
 
-gap:8px;
+  gap:8px;
 
 }
 
 .company-label{
 
-font-size:11px;
+  font-size:11px;
 
-font-weight:600;
+  font-weight:600;
 
-text-transform:uppercase;
+  text-transform:uppercase;
 
-opacity:.7;
-color: #047857;
+  opacity:.7;
+
+  color:#11d39c;
 
 }
 
 .company-dropdown{
 
-width:100%;
+  width:100%;
 
-padding:10px;
+  padding:10px;
 
-border-radius:8px;
+  border-radius:8px;
 
-border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.12);
 
-background:#071426;
+  background:#071426;
 
-color:white;
+  color:white;
 
-outline:none;
+  outline:none;
 
-font-size:14px;
+  font-size:14px;
+
+}
+
+
+/* New Company Section */
+
+.new-company-box{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  margin-top:10px;
+
+}
+
+.company-input{
+
+  width:100%;
+
+  padding:10px;
+
+  border-radius:8px;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  background:#071426;
+
+  color:white;
+
+  outline:none;
+
+}
+
+.company-input::placeholder{
+
+  color:rgba(255,255,255,.5);
+
+}
+
+.add-company-btn{
+
+  padding:10px;
+
+  border:none;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  background:#0ea56b;
+
+  color:white;
+
+  transition:.2s;
+  margin-left: 40px;
+
+}
+
+.add-company-btn:hover{
+
+  opacity:.9;
 
 }
