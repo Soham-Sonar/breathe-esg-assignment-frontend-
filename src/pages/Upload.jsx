@@ -89,7 +89,7 @@ function UploadCard({ source, companyId, onUploadComplete }) {
         ) : (
           <>
             <div className="file-drop-text" style={{ marginTop: 6 }}>
-              Click to select CSV file
+              Click to select file
             </div>
             <div className="file-drop-text">or drag and drop</div>
           </>

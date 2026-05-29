@@ -12,6 +12,7 @@ const NAV_ITEMS = [
 
   { id: "failed", icon: "⚠️", label: "Failed Rows" },
 
+  { id: "auditlog", icon: "📋", label: "Audit Log" },
 ];
 
 

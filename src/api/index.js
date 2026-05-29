@@ -122,3 +122,9 @@ export async function fetchFailedRows(companyId) {
 
   return data;
 }
+
+
+export async function fetchAuditLogs(companyId) {
+  const { data } = await client.get(`/audit-logs/?company_id=${companyId}`);
+  return data;
+}
